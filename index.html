@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta charset="UTF-8">
+    <title>God Wii Checker</title>
+
+    <!--** jQuery **-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+    <!--** Bootstrap **-->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    
+    <script type="text/javascript">
+      function check(){
+        var text = document.getElementById("serialno").value;
+        if (text.length == 12){
+          if (text.match(/[a-zA-Z]{3}[0-9]{9}/g)){
+            var first = document.getElementById("serialno").value.substr(0,3);
+            var second = document.getElementById("serialno").value.substr(3,4);
+            
+            var goodlimit = 0;
+            var badlimit = 0;
+
+            switch (first){
+              case "LJF":
+                goodlimit = 1474;
+                badlimit  = 1488;
+                break;
+              case "LJH":
+                goodlimit = 1160;
+                badlimit  = 1175;
+                break;
+              case "LJM":
+                goodlimit = 1035;
+                badlimit  = 1061;
+                break;
+            }
+            
+            if(second <= goodlimit){
+              document.getElementById("result").innerHTML="<div class=\"h1 text-success\">○This wii is God wii!!!</div>";
+            }else if (second >= badlimit){
+              document.getElementById("result").innerHTML="<div class=\"h1 text-danger\">×This wii isn't God wii.</div>";
+            }else{
+              document.getElementById("result").innerHTML="<div class=\"h1 text-warning\">△This wii is unknown. Sorry.</div>";
+            }
+
+
+            
+          }else{
+            document.getElementById("result").innerHTML="<div class=\"h1 text-danger\">Error:Serial No format is invalid. Please reinput.</div>"; 
+          }
+        }else{
+          document.getElementById("result").innerHTML="<div class=\"h1 text-danger\">Error:Text lenght isn't 12. Please reinput.</div>";
+        }
+      }
+
+      
+    </script>
+
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">God Wii Checker</h1>
+      <h2>Checker</h2>
+     
+      <div class="form-group">
+        <label for="serialno">Wii Serial No.</label>
+        <input class="form-control" id="serialno" placeholder="example:LJA000000000">
+      </div>
+      <button class="btn btn-default" onclick="check()">Submit</button>
+      <div id="result" class="text-center"></div>
+
+      <h2>What's this?</h2>
+      いわゆる神機と呼ばれているWiiの判別サイトです。<br>
+      チェック結果に保証は出来ません。<br>
+      特に、チェック結果が三角なものは曖昧です。自己責任でご利用ください<br>
+
+
+
+      <p class="text-right">参考サイト:<a href="http://gametricks.blog40.fc2.com/blog-entry-48.html">http://gametricks.blog40.fc2.com/blog-entry-48.html</a></p>
+</html>
+
